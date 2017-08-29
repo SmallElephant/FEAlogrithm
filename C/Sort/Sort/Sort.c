@@ -7,6 +7,7 @@
 //
 
 #include "Sort.h"
+#include <stdbool.h>
 
 void swap(int *a, int *b) {
     int temp = *a;
@@ -71,7 +72,7 @@ void insertSort(int a[], int n) {
             swap(&a[j], &a[j-1]);
         }
         printf("第%d趟排序\n",i);
-        printData(a, n);
+        display(a, n);
     }
 }
 
@@ -90,16 +91,87 @@ void shellSort(int a[], int n) {
     }
 }
 
-void partition(int a[], int low, int high) {
+void quickSort(int a[], int low, int high) {
+    if (low >= high) {
+        return;
+    }
+    int mid = partition(a, low, high);
+    quickSort(a, low, mid - 1);
+    quickSort(a, mid + 1, high);
+}
+
+int partition(int a[], int low, int high) {
     int j = low;
     int pivot = a[high];
-    for (int i = low; i <= high ; i++) {
+    for (int i = low; i < high ; i++) {
         if (a[i] < pivot) {
-            swap(&a[++j], &a[i]);
+            swap(&a[j++], &a[i]);
         }
     }
     swap(&a[j], &a[high]);
-    display(a, high + 1);
+    return j;
+}
+
+void quickSort1(int a[], int low, int high) {
+    if (low >= high) {
+        return;
+    }
+    int mid = partition(a, low, high);
+    quickSort1(a, low, mid - 1);
+    quickSort1(a, mid + 1, high);
+}
+
+int partition1(int a[], int low, int high) {
+    int i = low;
+    int j = high + 1;
+    int pivot = a[low];
+    while (true) {
+        while (a[++i] < pivot) {
+            if (i == high) {
+                break;
+            }
+        }
+        while (a[--j] > pivot) {
+            if (j == low) {
+                break;
+            }
+        }
+        if (i >= j) {
+            break;
+        }
+        swap(&a[i], &a[j]);
+    }
+    swap(&a[low], &a[j]);
+    return j;
+}
+
+void quickSort2(int a[], int low, int high) {
+    if (low >= high) {
+        return;
+    }
+    int mid = partition(a, low, high);
+    quickSort2(a, low, mid - 1);
+    quickSort2(a, mid + 1, high);
+}
+
+int partition2(int a[], int low, int high) {
+    int i = low + 1;
+    int j = high;
+    int pivot = a[low];
+    while (true) {
+        while (a[i] < pivot && i < j) {
+            i++;
+        }
+        while (a[j] > pivot && i < j) {
+            j--;
+        }
+        if (i >= j) {
+            break;
+        }
+        swap(&a[i], &a[j]);
+    }
+    swap(&a[low], &a[j]);
+    return j;
 }
 
 

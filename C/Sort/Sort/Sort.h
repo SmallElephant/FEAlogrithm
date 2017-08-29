@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 
-void printData(int a[], int n);
+void display(int a[], int n);
 
 // 冒泡排序
 void bubbleSort(int a[], int n);
@@ -26,6 +26,13 @@ void insertSort(int a[], int n);
 // 希尔排序
 void shellSort(int a[], int n);
 
-void partition(int a[], int low, int high);
+void quickSort(int a[], int low, int high);
+int partition(int a[], int low, int high);
+
+void quickSort1(int a[], int low, int high);
+int partition1(int a[], int low, int high);
+
+void quickSort2(int a[], int low, int high);
+int partition2(int a[], int low, int high);
 
 #endif /* Sort_h */
