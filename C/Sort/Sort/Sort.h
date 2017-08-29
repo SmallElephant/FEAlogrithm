@@ -35,4 +35,9 @@ int partition1(int a[], int low, int high);
 void quickSort2(int a[], int low, int high);
 int partition2(int a[], int low, int high);
 
+void mergeSort(int a[], int low, int high);
+void merge(int a[], int low, int mid, int high);
+
+void mergeSort2(int a[], int n);
+
 #endif /* Sort_h */

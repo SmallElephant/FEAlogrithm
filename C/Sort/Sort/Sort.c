@@ -8,6 +8,7 @@
 
 #include "Sort.h"
 #include <stdbool.h>
+#include <math.h>
 
 void swap(int *a, int *b) {
     int temp = *a;
@@ -174,4 +175,43 @@ int partition2(int a[], int low, int high) {
     return j;
 }
 
+void mergeSort(int a[], int low, int high) {
+    if (low >= high) {
+        return;
+    }
+    int mid = low + (high - low) / 2;
+    mergeSort(a, low, mid);
+    mergeSort(a, mid+1, high);
+    merge(a, low, mid, high);
+}
 
+void merge(int a[], int low, int mid, int high) {
+    int i = low;
+    int j = mid + 1;
+    int au[high - low + 1];
+    int m = 0;
+    for (int k = low; k <= high; k++) {
+        if (i > mid) { // 右子数组有剩余
+            au[m++] = a[j++];
+        } else if (j > high) { // 左子数组有剩余
+            au[m++] = a[i++];
+        } else if (a[i] < a[j]) {
+            au[m++] = a[i++];
+        } else {
+            au[m++] = a[j++];
+        }
+    }
+    
+    for (int k = low; k <= high; k++) {
+        a[k] = au[k - low];
+    }
+}
+
+void mergeSort2(int a[], int n) {
+    for (int sz = 1; sz < n; sz = sz + sz) {
+        for (int lo = 0; lo < n - sz; lo += sz + sz) {
+            int end = lo + sz + sz - 1 > n - 1 ? n - 1 : lo + sz + sz - 1;
+            merge(a, lo, lo + sz - 1, end);
+        }
+    }
+}
