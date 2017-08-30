@@ -28,21 +28,21 @@ int main(int argc, const char * argv[]) {
 //    printf("希尔排序的结果:\n");
 //    shellSort(a, 10);
 //    printData(a, 10);
-    
-    int quick[10] = {1, 4, 4, 3, 2, 10, 20, 8, 9, 4};
-    quickSort(quick, 0, 9);
+//    http://algs4.cs.princeton.edu/24pq/Heap.java.html
+    int quick[] = {1, 4, 7, 4, 3, 10, 5, 2, 4};
+    quickSort(quick, 0, 8);
     printf("快速排序之后的结果:\n");
-    display(quick, 10);
+    display(quick, 9);
     
-    int quick1[10] = {1, 4, 4, 3, 2, 10, 20, 8, 9, 4};
-    quickSort(quick1, 0, 9);
+    int quick1[] = {1, 4, 7, 4, 3, 10, 5, 2, 4};
+    quickSort1(quick1, 0, 8);
     printf("快速排序1之后的结果:\n");
-    display(quick1, 10);
+    display(quick1, 9);
     
-    int quick2[10] = {1, 4, 4, 3, 2, 10, 20, 8, 9, 4};
-    quickSort2(quick2, 0, 9);
+    int quick2[] = {1, 4, 7, 4, 3, 10, 5, 2, 4};
+    quickSort2(quick2, 0, 8);
     printf("快速排序2之后的结果:\n");
-    display(quick2, 10);
+    display(quick2, 9);
     
     int merge[10] = {1, 4, 4, 3, 2, 10, 20, 8, 9, 4};
     mergeSort(merge, 0, 9);

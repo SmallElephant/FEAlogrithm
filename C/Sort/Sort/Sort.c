@@ -175,6 +175,38 @@ int partition2(int a[], int low, int high) {
     return j;
 }
 
+
+void quickSort3(int a[], int low, int high) {
+    if (low >= high) {
+        return;
+    }
+    int index = partition2(a, low, high);
+    quickSort3(a, low, index - 1);
+    quickSort3(a, index + 1, high);
+}
+
+int partition3(int a[], int low, int high) {
+    int pivot = a[high];
+    int i = low;
+    int j = high - 1;
+    while(true) {
+        while (a[i] < pivot && i < j) {
+            i++;
+        }
+        while (a[j] > pivot && i < j) {
+            j--;
+        }
+        if (i >= j) {
+            break;
+        }
+        swap(&a[i], &a[j]);
+    }
+    
+    swap(&a[i], &a[high]);
+    return i;
+}
+
+
 void mergeSort(int a[], int low, int high) {
     if (low >= high) {
         return;
