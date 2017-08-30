@@ -35,6 +35,15 @@ int partition1(int a[], int low, int high);
 void quickSort2(int a[], int low, int high);
 int partition2(int a[], int low, int high);
 
+void quickSort3(int a[], int low, int high);
+int partition3(int a[], int low, int high);
+
+void quickSort4(int a[], int low, int high);
+int partition4(int a[], int low, int high);
+
+void quickSort5(int a[], int low, int high);
+int partition5(int a[], int low, int high);
+
 void mergeSort(int a[], int low, int high);
 void merge(int a[], int low, int mid, int high);
 

@@ -117,17 +117,17 @@ void quickSort1(int a[], int low, int high) {
     if (low >= high) {
         return;
     }
-    int mid = partition(a, low, high);
+    int mid = partition1(a, low, high);
     quickSort1(a, low, mid - 1);
     quickSort1(a, mid + 1, high);
 }
 
 int partition1(int a[], int low, int high) {
     int i = low;
-    int j = high + 1;
-    int pivot = a[low];
+    int j = high;
+    int pivot = a[high];
     while (true) {
-        while (a[++i] < pivot) {
+        while (a[i++] < pivot) {
             if (i == high) {
                 break;
             }
@@ -156,7 +156,7 @@ void quickSort2(int a[], int low, int high) {
 }
 
 int partition2(int a[], int low, int high) {
-    int i = low + 1;
+    int i = low;
     int j = high;
     int pivot = a[low];
     while (true) {
@@ -180,7 +180,7 @@ void quickSort3(int a[], int low, int high) {
     if (low >= high) {
         return;
     }
-    int index = partition2(a, low, high);
+    int index = partition3(a, low, high);
     quickSort3(a, low, index - 1);
     quickSort3(a, index + 1, high);
 }
@@ -200,12 +200,74 @@ int partition3(int a[], int low, int high) {
             break;
         }
         swap(&a[i], &a[j]);
+        display(a, 9);
     }
     
     swap(&a[i], &a[high]);
     return i;
 }
 
+
+void quickSort4(int a[], int low, int high) {
+    if (low >= high) {
+        return;
+    }
+    int index = partition4(a, low, high);
+    quickSort4(a, low, index - 1);
+    quickSort4(a, index + 1, high);
+}
+
+int partition4(int a[], int low, int high) {
+    int pivot = a[high];
+    int i = low;
+    int j = high - 1;
+    while (i < j) {
+        while (a[i] <= pivot && i < j) {
+            i++;
+        }
+
+        while (a[j] >= pivot && i < j) {
+            j--;
+        }
+        if (i >= j) {
+            break;
+        }
+    }
+    return i;
+}
+
+void quickSort5(int a[], int low, int high) {
+    if (low >= high) {
+        return;
+    }
+    int index = partition5(a, low, high);
+    quickSort5(a, low, index - 1);
+    quickSort5(a, index + 1, high);
+}
+
+int partition5(int a[], int low, int high) {
+    int pivot = a[high];
+    int i = low;
+    int j = high;
+    while (i < j) {
+        while (a[j] >= pivot && i < j) {
+            j--;
+        }
+        if (i < j) {
+            a[i++] = a[j];
+        }
+        
+        while (a[i] <= pivot && i < j) {
+            i++;
+        }
+        
+        if (i < j) {
+            a[j--] = a[i];
+        }
+    }
+    a[j] = pivot;
+    return j;
+}
 
 void mergeSort(int a[], int low, int high) {
     if (low >= high) {

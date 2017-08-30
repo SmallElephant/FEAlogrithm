@@ -44,6 +44,11 @@ int main(int argc, const char * argv[]) {
     printf("快速排序2之后的结果:\n");
     display(quick2, 9);
     
+    int quick5[] = {1, 4, 7, 4, 3, 10, 5, 2, 4};
+    quickSort5(quick5, 0, 8);
+    printf("快速排序3之后的结果:\n");
+    display(quick5, 9);
+    
     int merge[10] = {1, 4, 4, 3, 2, 10, 20, 8, 9, 4};
     mergeSort(merge, 0, 9);
     printf("归并排序自顶向下的结果:\n");
