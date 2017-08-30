@@ -29,6 +29,8 @@ int main(int argc, const char * argv[]) {
 //    shellSort(a, 10);
 //    printData(a, 10);
 //    http://algs4.cs.princeton.edu/24pq/Heap.java.html
+    
+//    http://www.zentut.com/c-tutorial/c-quicksort-algorithm/
     int quick[] = {1, 4, 7, 4, 3, 10, 5, 2, 4};
     quickSort(quick, 0, 8);
     printf("快速排序之后的结果:\n");
