@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A82CBBEB1F57AD28002636FB /* Sort.c in Sources */ = {isa = PBXBuildFile; fileRef = A82CBBE91F57AD28002636FB /* Sort.c */; };
 		C5E625FE1F52BA7A00AAB69F /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = C5E625FD1F52BA7A00AAB69F /* main.c */; };
-		C5E626061F52BB8B00AAB69F /* Sort.c in Sources */ = {isa = PBXBuildFile; fileRef = C5E626041F52BB8B00AAB69F /* Sort.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,10 +24,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A82CBBE91F57AD28002636FB /* Sort.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Sort.c; sourceTree = "<group>"; };
+		A82CBBEA1F57AD28002636FB /* Sort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sort.h; sourceTree = "<group>"; };
 		C5E625FA1F52BA7A00AAB69F /* Sort */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Sort; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5E625FD1F52BA7A00AAB69F /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		C5E626041F52BB8B00AAB69F /* Sort.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Sort.c; sourceTree = "<group>"; };
-		C5E626051F52BB8B00AAB69F /* Sort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sort.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,8 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				C5E625FD1F52BA7A00AAB69F /* main.c */,
-				C5E626041F52BB8B00AAB69F /* Sort.c */,
-				C5E626051F52BB8B00AAB69F /* Sort.h */,
+				A82CBBE91F57AD28002636FB /* Sort.c */,
+				A82CBBEA1F57AD28002636FB /* Sort.h */,
 			);
 			path = Sort;
 			sourceTree = "<group>";
@@ -125,7 +125,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5E625FE1F52BA7A00AAB69F /* main.c in Sources */,
-				C5E626061F52BB8B00AAB69F /* Sort.c in Sources */,
+				A82CBBEB1F57AD28002636FB /* Sort.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,6 +254,7 @@
 				C5E626031F52BA7A00AAB69F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

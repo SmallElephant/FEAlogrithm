@@ -2,34 +2,31 @@
 //  Sort.c
 //  Sort
 //
-//  Created by keso on 2017/8/27.
+//  Created by FlyElephant on 2017/8/31.
 //  Copyright © 2017年 FlyElephant. All rights reserved.
 //
 
 #include "Sort.h"
 #include <stdbool.h>
-#include <math.h>
 
 void swap(int *a, int *b) {
-    int temp = *a;
+    int tmp = *a;
     *a = *b;
-    *b = temp;
+    *b = tmp;
 }
 
 void display(int a[], int n) {
-    for(int i = 0;i < n; i++){
-        printf("%d ", a[i]);
+    for (int i = 0; i < n; i++) {
+        printf("%d ",a[i]);
     }
     printf("\n");
 }
-
-////交换类排序====
 
 // 冒泡排序
 
 void bubbleSort(int a[], int n) {
     for (int i = 0; i < n - 1; i++) {
-        for (int j = 0; j < n - i - 1; j++) {
+        for (int j = 0; j < n - 1 - i; j++) {
             if (a[j] > a[j+1]) {
                 swap(&a[j], &a[j+1]);
             }
@@ -37,60 +34,7 @@ void bubbleSort(int a[], int n) {
     }
 }
 
-void bubbleSort2(int a[], int n) {
-    for (int i = n - 1; i > 0 ; i--) {
-        for (int j = 0; j < i; j++) {
-            if (a[j] > a[j+1]) {
-                swap(&a[j], &a[j+1]);
-            }
-        }
-    }
-}
-
-////选择类排序====
-
-// 选择排序
-
-void selectSort(int a[], int n) {
-    for (int i = 0; i < n - 1; i++) {
-        int min = i;
-        for (int j = i + 1; j < n; j++) {
-            if (a[j] < a[min]) {
-                min = j;
-            }
-        }
-        swap(&a[i], &a[min]);
-    }
-}
-
-////插入类排序====
-
-// 插入排序
-
-void insertSort(int a[], int n) {
-    for (int i = 1; i < 10; i++) {
-        for (int j = i; j > 0 && a[j] < a[j-1]; j--) {
-            swap(&a[j], &a[j-1]);
-        }
-        printf("第%d趟排序\n",i);
-        display(a, n);
-    }
-}
-
-// 希尔排序
-
-void shellSort(int a[], int n) {
-    
-    int gap = n / 3;
-    while (gap > 0) {
-        for (int i = gap; i < n; i++) {
-            for (int j = i; j >= gap && a[j] < a[j-gap]; j -= gap) {
-                swap(&a[j], &a[j-gap]);
-            }
-        }
-        gap = gap / 3;
-    }
-}
+// 快速排序
 
 void quickSort(int a[], int low, int high) {
     if (low >= high) {
@@ -102,16 +46,17 @@ void quickSort(int a[], int low, int high) {
 }
 
 int partition(int a[], int low, int high) {
-    int j = low;
+    int i = low;
     int pivot = a[high];
-    for (int i = low; i < high ; i++) {
-        if (a[i] < pivot) {
-            swap(&a[j++], &a[i]);
+    for (int j = low; j <= high; j++) {
+        if (a[j] < pivot) {
+            swap(&a[i++], &a[j]);
         }
     }
-    swap(&a[j], &a[high]);
-    return j;
+    swap(&a[high], &a[i]);
+    return i;
 }
+
 
 void quickSort1(int a[], int low, int high) {
     if (low >= high) {
@@ -123,11 +68,11 @@ void quickSort1(int a[], int low, int high) {
 }
 
 int partition1(int a[], int low, int high) {
-    int i = low;
+    int i = low - 1;
     int j = high;
     int pivot = a[high];
     while (true) {
-        while (a[i++] < pivot) {
+        while (a[++i] < pivot) {
             if (i == high) {
                 break;
             }
@@ -142,152 +87,106 @@ int partition1(int a[], int low, int high) {
         }
         swap(&a[i], &a[j]);
     }
-    swap(&a[low], &a[j]);
-    return j;
+    swap(&a[i], &a[high]);
+    return i;
 }
 
 void quickSort2(int a[], int low, int high) {
     if (low >= high) {
         return;
     }
-    int mid = partition(a, low, high);
+    int mid = partition2(a, low, high);
     quickSort2(a, low, mid - 1);
     quickSort2(a, mid + 1, high);
 }
 
 int partition2(int a[], int low, int high) {
     int i = low;
-    int j = high;
-    int pivot = a[low];
+    int j = high - 1;
+    int pivot = a[high];
     while (true) {
-        while (a[i] < pivot && i < j) {
-            i++;
+        while (a[i] <= pivot) {
+            if (i < high) {
+                 i++;
+            } else {
+                break;
+            }
         }
-        while (a[j] > pivot && i < j) {
-            j--;
-        }
-        if (i >= j) {
-            break;
-        }
-        swap(&a[i], &a[j]);
-    }
-    swap(&a[low], &a[j]);
-    return j;
-}
-
-
-void quickSort3(int a[], int low, int high) {
-    if (low >= high) {
-        return;
-    }
-    int index = partition3(a, low, high);
-    quickSort3(a, low, index - 1);
-    quickSort3(a, index + 1, high);
-}
-
-int partition3(int a[], int low, int high) {
-    int pivot = a[high];
-    int i = low;
-    int j = high - 1;
-    while(true) {
-        while (a[i] < pivot && i < j) {
-            i++;
-        }
-        while (a[j] > pivot && i < j) {
-            j--;
+        while (a[j] > pivot) {
+            if (j > low) {
+                j--;
+            } else {
+                break;
+            }
         }
         if (i >= j) {
             break;
         }
         swap(&a[i], &a[j]);
-        display(a, 9);
     }
-    
-    swap(&a[i], &a[high]);
+    swap(&a[high], &a[i]);
     return i;
 }
 
+// 选择排序
 
-void quickSort4(int a[], int low, int high) {
-    if (low >= high) {
-        return;
+void selectSort(int a[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        int min = i;
+        for (int j = i; j < n; j++) {
+            if (a[j] < a[min]) {
+                min = j;
+            }
+        }
+        swap(&a[i], &a[min]);
     }
-    int index = partition4(a, low, high);
-    quickSort4(a, low, index - 1);
-    quickSort4(a, index + 1, high);
 }
 
-int partition4(int a[], int low, int high) {
-    int pivot = a[high];
-    int i = low;
-    int j = high - 1;
-    while (i < j) {
-        while (a[i] <= pivot && i < j) {
-            i++;
-        }
+// 插入排序
 
-        while (a[j] >= pivot && i < j) {
-            j--;
-        }
-        if (i >= j) {
-            break;
+void insertSort(int a[], int n) {
+    for (int i = 0; i < n; i++) {
+        for (int j = i; j > 0 && a[j] < a[j-1]; j--) {
+            swap(&a[j], &a[j-1]);
         }
     }
-    return i;
 }
 
-void quickSort5(int a[], int low, int high) {
-    if (low >= high) {
-        return;
+// 希尔排序
+
+void shellSort(int a[], int n) {
+    int gap = n / 3;
+    while (gap > 0) {
+        for (int i = gap; i < n; i++) {
+            for (int j = i; j >= gap && a[j] < a[j-gap]; j -= gap) {
+                swap(&a[j], &a[j-gap]);
+            }
+        }
+        gap = gap / 3;
     }
-    int index = partition5(a, low, high);
-    quickSort5(a, low, index - 1);
-    quickSort5(a, index + 1, high);
 }
 
-int partition5(int a[], int low, int high) {
-    int pivot = a[high];
-    int i = low;
-    int j = high;
-    while (i < j) {
-        while (a[j] >= pivot && i < j) {
-            j--;
-        }
-        if (i < j) {
-            a[i++] = a[j];
-        }
-        
-        while (a[i] <= pivot && i < j) {
-            i++;
-        }
-        
-        if (i < j) {
-            a[j--] = a[i];
-        }
-    }
-    a[j] = pivot;
-    return j;
-}
 
+// 归并排序
 void mergeSort(int a[], int low, int high) {
     if (low >= high) {
         return;
     }
     int mid = low + (high - low) / 2;
     mergeSort(a, low, mid);
-    mergeSort(a, mid+1, high);
+    mergeSort(a, mid + 1, high);
     merge(a, low, mid, high);
 }
 
 void merge(int a[], int low, int mid, int high) {
+    int au[high-low+1];
     int i = low;
     int j = mid + 1;
-    int au[high - low + 1];
     int m = 0;
     for (int k = low; k <= high; k++) {
-        if (i > mid) { // 右子数组有剩余
+        if (i > mid) {
             au[m++] = a[j++];
-        } else if (j > high) { // 左子数组有剩余
+        } else if (j > high) {
             au[m++] = a[i++];
         } else if (a[i] < a[j]) {
             au[m++] = a[i++];
@@ -295,17 +194,35 @@ void merge(int a[], int low, int mid, int high) {
             au[m++] = a[j++];
         }
     }
-    
     for (int k = low; k <= high; k++) {
-        a[k] = au[k - low];
+        a[k] = au[k-low];
     }
 }
 
-void mergeSort2(int a[], int n) {
-    for (int sz = 1; sz < n; sz = sz + sz) {
-        for (int lo = 0; lo < n - sz; lo += sz + sz) {
-            int end = lo + sz + sz - 1 > n - 1 ? n - 1 : lo + sz + sz - 1;
-            merge(a, lo, lo + sz - 1, end);
-        }
+// 堆排序
+void heapSort(int a[], int n) {
+    // 构造堆
+    for (int i = n / 2; i >=0; i--) {
+        sink(a, i, n);
+    }
+    
+    while (n > 0) {
+        swap(&a[0], &a[n--]);
+        sink(a, 0, n);
     }
 }
+
+void sink(int a[], int k, int n) {
+    while ((2*k+1) <= n) {
+        int j = 2 * k + 1;
+        if (j < n && a[j] < a[j+1]) {
+            j++;
+        }
+        if (a[k] > a[j]) {
+            break;
+        }
+        swap(&a[k], &a[j]);
+        k = j;
+    }
+}
+
